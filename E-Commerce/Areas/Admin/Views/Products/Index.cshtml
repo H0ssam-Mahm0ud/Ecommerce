@@ -1,0 +1,56 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">All Products</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <a class="btn btn-outline-success" asp-area="Admin" asp-controller="Products" asp-action="Create">Add Product</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Category Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Product Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ProName</td>
+                                <td>@item.Category.CatName</td>
+                                <td>@item.Description</td>
+                                <td>@item.Price</td>
+                                <td>
+                                    <img src="~/Product/@item.ProImage" style="width:120px;height:75px;" />
+                                </td>
+                                <td>
+                                    <a class="btn btn-outline-primary" asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="@item.ProId">Edit</a>
+                                    <a class="btn btn-outline-danger" asp-area="Admin" asp-controller="Products" asp-route-id="@item.ProId" asp-action="Delete">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

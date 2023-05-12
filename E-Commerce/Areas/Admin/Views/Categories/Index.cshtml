@@ -1,0 +1,50 @@
+﻿@model List<Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">All Categories</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <a class="btn btn-outline-success" asp-area="Admin" asp-controller="Categories" asp-action="Create">Add Category</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Category Name</th>
+                            <th>Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CatName</td>
+                                <td>
+                                    <img src="~/category/@item.CatPhoto" style="width:120px;height:75px;"/>
+                                </td>
+                                <td>
+                                    <a class="btn btn-outline-primary" asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="@item.CatId">Edit</a>
+                                    <a class="btn btn-outline-danger" asp-area="Admin" asp-controller="Categories" asp-route-id="@item.CatId" asp-action="Delete">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
